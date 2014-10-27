@@ -100,11 +100,10 @@ public class AnimationFactory {
 	public static Animation[] flipAnimation(final View fromView, final View toView, FlipDirection dir, long duration) {
 		
 		Animation[] result = new Animation[2];
-		float centerY;
-
-		centerY = fromView.getHeight() / 2.0f; 
+        float centerX = fromView.getWidth() / 2.0f;
+		float centerY = fromView.getHeight() / 2.0f;
 		
-		Animation outFlip = new FlipAnimation(dir.getStartDegreeForFirstView(), dir.getEndDegreeForFirstView(), true, centerY, dir, fromView.getWidth());
+		Animation outFlip = new FlipAnimation(dir.getStartDegreeForFirstView(), dir.getEndDegreeForFirstView(), centerX, centerY);
 		outFlip.setDuration(duration);
 		outFlip.setFillAfter(true);
 		outFlip.setInterpolator(new AccelerateInterpolator()); 
@@ -113,7 +112,7 @@ public class AnimationFactory {
 		outAnimation.addAnimation(outFlip); 
 		result[0] = outAnimation; 
 		
-		Animation inFlip = new FlipAnimation(dir.getStartDegreeForSecondView(), dir.getEndDegreeForSecondView(), false, centerY, dir, fromView.getWidth());
+		Animation inFlip = new FlipAnimation(dir.getStartDegreeForSecondView(), dir.getEndDegreeForSecondView(), centerX, centerY);
 		inFlip.setDuration(duration);
 		inFlip.setFillAfter(true);
 		inFlip.setInterpolator(new DecelerateInterpolator());
